@@ -1,4 +1,6 @@
-﻿using System;
+﻿//algorytm genetyczny 2 | Jacek Domeracki | numer albumu: 173518
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,7 +48,7 @@ namespace Zadanie_2
 
         private double Funkcja_fx(double x, double pa, double pb, double pc)
         {
-            return Math.Round(pa * Math.Sin(pb * x + pc), 6);
+            return pa * Math.Sin(pb * x + pc);
         }
 
         private double Funkcja_przystosowania(Dictionary<int, double> przedzial_dyskretny, Dictionary<double, double> probki_funkcji_fx)
@@ -221,7 +223,7 @@ namespace Zadanie_2
             return Math.Round(sum_wart_fun_przyst / pula_osobnikow.Length, 6);
         }
 
-        static void TEST_1(string nazwa, Dictionary<int, double> Przedzial_dyskretny)       //<int, double>  lub  <double, double>
+        static void TEST_1<T>(string nazwa, Dictionary<T, double> Przedzial_dyskretny)       //< dziedzina funkcji, double>
         {
             Console.WriteLine("(TEST) " + nazwa);
             foreach (var p_dyskr in Przedzial_dyskretny.OrderBy(x => x.Key))
@@ -283,19 +285,19 @@ namespace Zadanie_2
 
             Dictionary<int, double> Przedzial_dyskretny = new Dictionary<int, double>();
             Dyskretyzacja_przedzialu(Przedzial_dyskretny, PRZEDZ_MIN, PRZEDZ_MAX, ILE_CHROM_NP);
-            TEST_1("Dyskretyzacja:", Przedzial_dyskretny);
+            //TEST_1("Dyskretyzacja:", Przedzial_dyskretny);
 
             Dictionary<double, double> Probki_funkcji_fx = new Dictionary<double, double>
             {
-              { -1.00000 ,  0.59554 }, { -0.60000 ,  0.64181 }, { -0.80000 ,  0.58813 }, { -0.40000 ,  0.68587 },
-              { -0.20000 ,  0.44783 }, {  0.00000 ,  0.40836 }, {  0.20000 ,  0.38241 }, {  0.40000 , -0.05933 },
-              {  0.60000 , -0.12478 }, {  0.80000 , -0.36847 }, {  1.00000 , -0.39935 }, {  1.20000 , -0.50881 },
-              {  1.40000 , -0.63435 }, {  1.60000 , -0.59979 }, {  1.80000 , -0.64107 }, {  2.00000 , -0.51808 },
-              {  2.20000 , -0.38127 }, {  2.40000 , -0.12349 }, {  2.60000 , -0.09624 }, {  2.80000 ,  0.27893 },
-              {  3.00000 ,  0.48965 }, {  3.20000 ,  0.33089 }, {  3.40000 ,  0.70615 }, {  3.60000 ,  0.53342 },
-              {  3.80000 ,  0.43321 }, {  4.00000 ,  0.64790 }, {  4.20000 ,  0.48834 }, {  4.40000 ,  0.18440 },
-              {  4.60000 , -0.02389 }, {  4.80000 , -0.10261 }, {  5.00000 , -0.33594 }, {  5.20000 , -0.35101 },
-              {  5.40000 , -0.62027 }, {  5.60000 , -0.55719 }, {  5.80000 , -0.66377 }, {  6.00000 , -0.62740 }
+                { -1.00000 ,  0.59554 }, { -0.80000 ,  0.58813 }, { -0.60000 ,  0.64181 }, { -0.40000 ,  0.68587 },
+                { -0.20000 ,  0.44783 }, {  0.00000 ,  0.40836 }, {  0.20000 ,  0.38241 }, {  0.40000 , -0.05933 },
+                {  0.60000 , -0.12478 }, {  0.80000 , -0.36847 }, {  1.00000 , -0.39935 }, {  1.20000 , -0.50881 },
+                {  1.40000 , -0.63435 }, {  1.60000 , -0.59979 }, {  1.80000 , -0.64107 }, {  2.00000 , -0.51808 },
+                {  2.20000 , -0.38127 }, {  2.40000 , -0.12349 }, {  2.60000 , -0.09624 }, {  2.80000 ,  0.27893 },
+                {  3.00000 ,  0.48965 }, {  3.20000 ,  0.33089 }, {  3.40000 ,  0.70615 }, {  3.60000 ,  0.53342 },
+                {  3.80000 ,  0.43321 }, {  4.00000 ,  0.64790 }, {  4.20000 ,  0.48834 }, {  4.40000 ,  0.18440 },
+                {  4.60000 , -0.02389 }, {  4.80000 , -0.10261 }, {  5.00000 , -0.33594 }, {  5.20000 , -0.35101 },
+                {  5.40000 , -0.62027 }, {  5.60000 , -0.55719 }, {  5.80000 , -0.66377 }, {  6.00000 , -0.62740 }
             };
             //TEST_1("Próbki funkcji fx:", Probki_funkcji_fx);
 
@@ -313,7 +315,7 @@ namespace Zadanie_2
 
                 nowa_pula_osobnikow[i] = new Osobnik(ILE_CHROM_NP);
             }
-            TEST_2("Pula osobników:", pula_osobnikow, Przedzial_dyskretny);
+            //TEST_2("Pula osobników:", pula_osobnikow, Przedzial_dyskretny);
 
             //TEST_3("Operatory genetyczne:", pula_osobnikow, ref osobnik_rob_1, ref osobnik_rob_2, Przedzial_dyskretny, Probki_funkcji_fx);
 
